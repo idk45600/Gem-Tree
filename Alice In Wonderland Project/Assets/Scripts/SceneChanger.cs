@@ -32,10 +32,25 @@ public class SceneChanger : MonoBehaviour
 
 
     }
+    public void loadNewScene()
+    {
+        int i = Random.Range(0, sceanes.Count);
+
+      //  if (Input.GetKeyDown(KeyCode.Space))
+      //  {
+
+
+            SceneManager.LoadScene(sceanes[i]);
+            //SceneManager.;
+
+            sceanes.RemoveAt(i);
+
+      //  }
+    }
     // Update is called once per frame
     void Update()
     {
-        int i = Random.Range(0, sceanes.Count);
+       /* int i = Random.Range(0, sceanes.Count);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -46,6 +61,6 @@ public class SceneChanger : MonoBehaviour
 
             sceanes.RemoveAt(i);
 
-        }
+        }*/
     }
 }
