@@ -31,7 +31,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
+    public Transform GetOrientation()
+    {
+        return orientation;
+    }
 
     // Update is called once per frame
     void Update()
