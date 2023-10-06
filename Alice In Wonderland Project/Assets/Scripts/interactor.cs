@@ -12,9 +12,12 @@ public class interactor : MonoBehaviour
     {
         
     }
-
+    public Transform getGrabLocal()
+    {
+        return source;
+    }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -23,7 +26,16 @@ public class interactor : MonoBehaviour
             {
                 if (hitData.collider.gameObject.GetComponent<Interactable>()!=null)
                 {
-                    hitData.collider.gameObject.GetComponent<Interactable>().Interact();
+                    if (hitData.collider.gameObject.GetComponent<Interactable>().getIsGrabObject()==true)
+                    {
+                        hitData.collider.gameObject.GetComponent<Interactable>().Grab(source);
+                    }
+                    else
+                    {
+                        hitData.collider.gameObject.GetComponent<Interactable>().Interact();
+                    }
+                   
+
                 }
 
             }
