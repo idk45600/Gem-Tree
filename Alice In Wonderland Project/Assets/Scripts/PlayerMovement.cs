@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     float verticalInput;
     Vector3 moveDirection;
     Rigidbody rigbody;
+    private bool reverse;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +30,16 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         rigbody.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }
+    private void reversemove()
+    {
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        rigbody.AddForce(-moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+    }
 
-
+    public  void Reversecontrols(bool truOrFalse)
+    {
+        reverse = truOrFalse;
+    }
     public Transform GetOrientation()
     {
         return orientation;
@@ -44,6 +53,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (reverse == true)
+        {
+            reversemove();
+        }
+        else {
+            MovePlayer();
+        }
+        
     }
 }

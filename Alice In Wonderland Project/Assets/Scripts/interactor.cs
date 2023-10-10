@@ -40,6 +40,7 @@ public class interactor : MonoBehaviour
 
             }
         }
+       
     }
 }
 /*Debug.DrawRay(ray.origin, ray.direction);

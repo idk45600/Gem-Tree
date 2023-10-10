@@ -7,6 +7,9 @@ public class Interactable : MonoBehaviour
     [SerializeField] bool IsEndObject= true;
     [SerializeField] bool IsChessObject = false;
     [SerializeField] bool IsGrabObject = false;
+    [SerializeField] bool IsPill1 = false;
+    [SerializeField] bool IsPill2 = false;
+    [SerializeField] bool IsPill3 = false;
     Transform grabObjectPoint;
     SceneChanger SceneChanger;
     Vector3 moveDirection;
@@ -32,11 +35,10 @@ public class Interactable : MonoBehaviour
             moveDirection = plamove.GetOrientation().forward  + plamove.GetOrientation().right ;
             this.gameObject.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * 50f * 10f, ForceMode.Force);
         }
-       /* if (IsGrabObject== true)
+        if (IsPill1== true)
         {
-            this.gameObject.GetComponent<Rigidbody>().MovePosition(intera.getGrabLocal().position);
-            this.gameObject.GetComponent<Rigidbody>().useGravity=false;
-        }*/
+            plamove.Reversecontrols(true);
+        }
     }
     public void Grab(Transform grabObjectPoint)
     {
@@ -52,6 +54,11 @@ public class Interactable : MonoBehaviour
         {
             this.gameObject.GetComponent<Rigidbody>().MovePosition(intera.getGrabLocal().position);
             this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+           this.grabObjectPoint= null;
+            this.gameObject.GetComponent<Rigidbody>().useGravity = true;
         }
     }
     // Update is called once per frame

@@ -3295,7 +3295,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsEndObject: 0
   IsChessObject: 0
-  IsGrabObject: 1
+  IsGrabObject: 0
+  IsPill1: 1
+  IsPill2: 0
+  IsPill3: 0
 --- !u!1 &929579901
 GameObject:
   m_ObjectHideFlags: 0
@@ -3437,6 +3440,9 @@ MonoBehaviour:
   IsEndObject: 0
   IsChessObject: 0
   IsGrabObject: 1
+  IsPill1: 0
+  IsPill2: 0
+  IsPill3: 0
 --- !u!54 &931747852
 Rigidbody:
   m_ObjectHideFlags: 0
