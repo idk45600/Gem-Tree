@@ -17,13 +17,15 @@ public class interactor : MonoBehaviour
         return source;
     }
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             if (Physics.Raycast(ray, out RaycastHit hitData, range))
             {
+             //   Debug.Log("hit");
+               // Debug.DrawRay(ray.origin, ray.direction);
                 if (hitData.collider.gameObject.GetComponent<Interactable>()!=null)
                 {
                     if (hitData.collider.gameObject.GetComponent<Interactable>().getIsGrabObject()==true)

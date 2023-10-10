@@ -55,18 +55,19 @@ public class Interactable : MonoBehaviour
             this.gameObject.GetComponent<Rigidbody>().MovePosition(intera.getGrabLocal().position);
             this.gameObject.GetComponent<Rigidbody>().useGravity = false;
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        /*if (Input.GetKeyDown(KeyCode.R))
         {
            this.grabObjectPoint= null;
             this.gameObject.GetComponent<Rigidbody>().useGravity = true;
-        }
+        }*/
     }
     // Update is called once per frame
     void Update()
     {
-      //  if (cam.getHitData().transform.gameObject == this && IsEndObject==true && Input.GetKeyDown(KeyCode.E))
-        //{
-          //   SceneChanger.loadNewScene();
-        //}
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            this.grabObjectPoint = null;
+            this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+        }
     }
 }
