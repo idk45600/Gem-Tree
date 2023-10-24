@@ -7,6 +7,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] float moveSpeed;
     [SerializeField] Transform orientation;
+    [SerializeField] float drag;
+    [SerializeField] float playerHeight;
+    [SerializeField] LayerMask Isground;
+    bool grounded;
     float horizontalInput;
     float verticalInput;
     Vector3 moveDirection;
@@ -35,7 +39,15 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         rigbody.AddForce(-moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }
-
+    private void controlSpeed()
+    {
+        Vector3 flatvel = new Vector3(rigbody.velocity.x, 0f, rigbody.velocity.z);
+        if(flatvel.magnitude> moveSpeed)
+        {
+            Vector3 limtedval = flatvel.normalized * moveSpeed;
+            rigbody.velocity = new Vector3(limtedval.x, rigbody.velocity.x, limtedval.z);
+        }
+    }
     public  void Reversecontrols(bool truOrFalse)
     {
         reverse = truOrFalse;
@@ -49,6 +61,18 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         PlayerInput();
+        controlSpeed();
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f+0.2f,Isground);
+
+        if (grounded)
+        {
+            rigbody.drag = drag;
+
+        }
+        else
+        {
+            rigbody.drag = 0;
+        }
 
     }
     private void FixedUpdate()

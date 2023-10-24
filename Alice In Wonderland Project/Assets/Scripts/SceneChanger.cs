@@ -36,8 +36,11 @@ public class SceneChanger : MonoBehaviour
     {
         int i = Random.Range(0, sceanes.Count);
 
-      //  if (Input.GetKeyDown(KeyCode.Space))
-      //  {
+
+        if (sceanes.Count == 0)
+        {
+            SceneManager.LoadScene(5);
+        }
 
 
             SceneManager.LoadScene(sceanes[i]);
@@ -45,7 +48,15 @@ public class SceneChanger : MonoBehaviour
 
             sceanes.RemoveAt(i);
 
-      //  }
+     
+    }
+    public void startgame()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void Quitgame()
+    {
+        Application.Quit();
     }
     // Update is called once per frame
     void Update()

@@ -33,7 +33,7 @@ public class Interactable : MonoBehaviour
         if (IsChessObject== true)
         {
             moveDirection = plamove.GetOrientation().forward  + plamove.GetOrientation().right ;
-            this.gameObject.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * 50f * 10f, ForceMode.Force);
+            this.gameObject.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * 20f * 10f, ForceMode.Force);
         }
         if (IsPill1== true)
         {
@@ -43,6 +43,10 @@ public class Interactable : MonoBehaviour
     public void Grab(Transform grabObjectPoint)
     {
         this.grabObjectPoint = grabObjectPoint;
+    }
+    public void setobjectgrabable(bool t)
+    {
+        IsGrabObject = t;
     }
     public bool getIsGrabObject()
     {
