@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class firstPersonCam : MonoBehaviour
 {
-    [SerializeField] float sensX;
-    [SerializeField] float sensY;
+    public float sensX;
+    public float sensY;
     [SerializeField] Transform orientation;
    // [SerializeField] GameObject go;
     private float xRotation;

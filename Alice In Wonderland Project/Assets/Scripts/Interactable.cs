@@ -8,21 +8,29 @@ public class Interactable : MonoBehaviour
     [SerializeField] bool IsChessObject = false;
     [SerializeField] bool IsGrabObject = false;
     [SerializeField] bool IsPill1 = false;
-    [SerializeField] bool IsPill2 = false;
-    [SerializeField] bool IsPill3 = false;
+    [SerializeField] bool door = false;
+    [SerializeField] bool draw = false;
+    [SerializeField] float rotationSensitivity=3000;
     Transform grabObjectPoint;
     SceneChanger SceneChanger;
     Vector3 moveDirection;
     PlayerMovement plamove;
+    private float presensx;
+    private float presensy;
     interactor intera;
+    firstPersonCam firstPersonCam;
+   [SerializeField] GameObject lockPick;
     //firstPersonCam cam;
     // Start is called before the first frame update
     void Start()
     {
         //  cam = FindFirstObjectByType<firstPersonCam>();
         SceneChanger = FindObjectOfType<SceneChanger>();
+        firstPersonCam = FindObjectOfType<firstPersonCam>();
         plamove = FindObjectOfType<PlayerMovement>();
         intera = FindObjectOfType<interactor>();
+        presensx = firstPersonCam.sensX;
+        presensy = firstPersonCam.sensY;
     }
     public void Interact()
     {
@@ -38,6 +46,10 @@ public class Interactable : MonoBehaviour
         if (IsPill1== true)
         {
             plamove.Reversecontrols(true);
+        }
+        if(door== true)
+        {
+            lockPick.SetActive(true);
         }
     }
     public void Grab(Transform grabObjectPoint)
@@ -73,5 +85,23 @@ public class Interactable : MonoBehaviour
             this.grabObjectPoint = null;
             this.gameObject.GetComponent<Rigidbody>().useGravity = true;
         }
+        if (Input.GetKey(KeyCode.F))
+        {
+            firstPersonCam.sensX = 0f;
+            firstPersonCam.sensY = 0f;
+            float xAxisRotation = Input.GetAxis("Mouse X") * rotationSensitivity;
+            float yAxisRotation = Input.GetAxis("Mouse Y") * rotationSensitivity;
+            this.transform.Rotate(Vector3.down, xAxisRotation);
+            this.transform.Rotate(Vector3.right, yAxisRotation);
+
+        }
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            firstPersonCam.sensX = presensx;
+            firstPersonCam.sensY = presensy;
+          
+
+        }
+
     }
 }
