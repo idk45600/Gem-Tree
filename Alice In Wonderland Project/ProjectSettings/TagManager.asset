@@ -6,6 +6,8 @@ TagManager:
   tags:
   - WinCondition
   - Ground
+  - BlackQueen
+  - WhiteQueen
   layers:
   - Default
   - TransparentFX
